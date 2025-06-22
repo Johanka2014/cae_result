@@ -18,7 +18,7 @@
             border-radius: 0.75rem;
             padding: 1.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* More pronounced shadow */
         }
         .exercise-title {
             color: #047857; /* Darker green accent */
@@ -75,6 +75,7 @@
             padding: 0.5rem 1rem;
             margin: 0.5rem;
             background-color: #F3F4F6;
+            border: 1px solid #F3F4F6;
             border-radius: 0.5rem;
             transition: background-color 0.2s;
             color: #1F2937;
@@ -118,212 +119,393 @@
             font-size: 0.875rem;
             font-weight: 500;
         }
-        .nav-btn {
-             background-color: #fff;
-             color: #047857;
-             border: 2px solid #fff;
+        .explanation-list ul {
+            list-style-type: none;
+            padding: 0;
         }
-        .nav-btn.active {
+        .explanation-list li {
+            margin-bottom: 0.5rem;
+        }
+        .explanation-list strong {
+            color: #047857;
+            display: inline-block;
+            min-width: 90px;
+        }
+        #title-page {
+            text-align: center;
+            padding: 2rem;
+        }
+        #title-page img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .start-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
             background-color: #047857;
             color: #fff;
-            border-color: #047857;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .start-link:hover {
+            background-color: #065f46;
+        }
+        .nav-link {
+            color: #047857;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-link:hover {
+            color: #065f46;
+        }
+        .nav-link.active {
+            text-decoration: underline;
+        }
+        .page-nav-button {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+        .page-nav-button.hidden {
+            visibility: hidden;
+            opacity: 0;
         }
     </style>
 </head>
 <body class="p-4 sm:p-8">
 
-    <div class="max-w-4xl mx-auto">
-        <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-800">Interactive English Review</h1>
-            <p class="text-lg text-gray-600 mt-2">Module 9 Exercises</p>
-        </header>
-
-        <!-- Page Navigation -->
-        <nav class="flex justify-center space-x-4 mb-8">
-            <button id="nav-page1" onclick="showPage(1)" class="btn nav-btn active">Page 1</button>
-            <button id="nav-page2" onclick="showPage(2)" class="btn nav-btn">Page 2</button>
-        </nav>
-
-        <!-- Page 1 Content -->
-        <div id="page1">
-            <!-- Exercise 1 -->
-            <section id="ex1" class="exercise-card">
-                <h2 class="exercise-title text-2xl">1. Join the Sentence Halves</h2>
-                <p class="text-gray-500 mb-6">Join sentence halves a-h with 1-8 using 'of' or 'for'.</p>
-                <div id="ex1-questions" class="space-y-4"></div>
-                <div id="ex1-feedback" class="feedback mt-4"></div>
-                <div class="mt-6 flex space-x-4">
-                    <button onclick="checkEx1()" class="btn btn-primary">Check Answers</button>
-                    <button onclick="resetEx1()" class="btn btn-secondary">Reset</button>
-                </div>
-            </section>
-            <!-- Exercise 2 -->
-            <section id="ex2" class="exercise-card">
-                <h2 class="exercise-title text-2xl">2. Categorize the Crimes</h2>
-                <p class="text-gray-500 mb-6">Drag and drop each crime into the correct category.</p>
-                <div id="ex2-content"></div>
-                <div id="ex2-feedback" class="feedback mt-4"></div>
-                <div class="mt-6 flex space-x-4">
-                    <button onclick="checkEx2()" class="btn btn-primary">Check Answers</button>
-                    <button onclick="resetEx2()" class="btn btn-secondary">Reset</button>
-                </div>
-            </section>
-            <!-- Exercise 3 -->
-            <section id="ex3" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">3. Match the Sentence Halves</h2>
-                 <p class="text-gray-500 mb-6">Match sentence halves a-g with 1-7.</p>
-                 <div id="ex3-questions" class="space-y-4"></div>
-                 <div id="ex3-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx3()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx3()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
-            <!-- Exercise 4 -->
-            <section id="ex4" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">4. Phrasal Verbs</h2>
-                 <p class="text-gray-500 mb-6">Replace the words in italics with phrasal verbs with 'out' or 'over'.</p>
-                 <div id="ex4-questions" class="space-y-4"></div>
-                 <div id="ex4-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx4()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx4()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
-            <!-- Exercise 5 -->
-            <section id="ex5" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">5. Fill in the Prepositions</h2>
-                 <p class="text-gray-500 mb-6">Fill in the missing prepositions in these extracts from a report.</p>
-                 <div id="ex5-questions" class="space-y-4"></div>
-                 <div id="ex5-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx5()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx5()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
-            <!-- Exercise 6 -->
-            <section id="ex6" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">6. Complete the Report</h2>
-                 <p class="text-gray-500 mb-6">Use one word in each gap to complete this extract from a report about a trip.</p>
-                 <div id="ex6-text" class="text-lg leading-relaxed"></div>
-                 <div id="ex6-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx6()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx6()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
+    <div class="max-w-5xl mx-auto">
+        <!-- Title Page -->
+        <div id="title-page">
+            <img src="https://johanka2014.github.io/cae_result/revision.jpg" alt="Revision illustration">
+            <a href="#" onclick="showExercises(event)" class="start-link">Click here to start revision</a>
         </div>
+        
+        <!-- Main Exercises Content (initially hidden) -->
+        <div id="main-content" class="hidden">
+            <header class="bg-white/80 backdrop-blur-sm sticky top-4 z-10 p-4 rounded-lg shadow-md mb-8">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-bold text-gray-800">English Exercises</h1>
+                    
+                    <!-- Desktop Navigation -->
+                    <nav id="desktop-nav" class="hidden md:flex items-center flex-wrap gap-x-3 gap-y-2"></nav>
 
-        <!-- Page 2 Content -->
-        <div id="page2" class="hidden">
-            <!-- Exercise 7 (New 1) -->
-            <section id="ex7" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">1. Match the Crime</h2>
-                 <p class="text-gray-500 mb-6">Match what each person did with the name of their crime.</p>
-                 <div id="ex7-questions" class="space-y-4"></div>
-                 <div id="ex7-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx7()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx7()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
-            <!-- Exercise 8 (New 2) -->
-            <section id="ex8" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">2. Complete with Verbs</h2>
-                 <p class="text-gray-500 mb-6">Complete the sentences with a verb from the box in the correct form. One verb is used twice.</p>
-                 <div id="ex8-word-bank" class="word-bank"></div>
-                 <div id="ex8-questions" class="space-y-4"></div>
-                 <div id="ex8-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx8()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx8()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
-             <!-- Exercise 9 (New 3) -->
-            <section id="ex9" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">3. Replace the Word</h2>
-                 <p class="text-gray-500 mb-6">Replace the underlined part of the sentence with a word from the box.</p>
-                 <div id="ex9-word-bank" class="word-bank"></div>
-                 <div id="ex9-questions" class="space-y-4"></div>
-                 <div id="ex9-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx9()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx9()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
-            <!-- Exercise 10 (New 4) -->
-            <section id="ex10" class="exercise-card">
-                 <h2 class="exercise-title text-2xl">4. Word Formation</h2>
-                 <p class="text-gray-500 mb-6">Complete the sentences with a word formed from the word in capitals.</p>
-                 <div id="ex10-questions" class="space-y-4"></div>
-                 <div id="ex10-feedback" class="feedback mt-4"></div>
-                 <div class="mt-6 flex space-x-4">
-                     <button onclick="checkEx10()" class="btn btn-primary">Check Answers</button>
-                     <button onclick="resetEx10()" class="btn btn-secondary">Reset</button>
-                 </div>
-            </section>
+                    <!-- Mobile Navigation Button -->
+                    <button id="hamburger-btn" class="md:hidden p-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500" onclick="toggleMobileMenu()">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </header>
+
+             <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-20 p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-2xl font-bold">Exercises</h2>
+                    <button class="p-2" onclick="toggleMobileMenu()">
+                         <svg class="h-8 w-8 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <nav id="mobile-nav-links" class="flex flex-col space-y-4"></nav>
+            </div>
+
+            <!-- Exercises Container -->
+            <div id="exercises-container">
+                <!-- Exercise 1 -->
+                <section id="ex1" class="exercise-page">
+                    <div class="exercise-card">
+                        <h2 class="exercise-title text-2xl">1. Join the Sentence Halves</h2>
+                        <p class="text-gray-500 mb-6">Join sentence halves a-h with 1-8 using 'of' or 'for'.</p>
+                        <div id="ex1-questions" class="space-y-4"></div>
+                        <div id="ex1-feedback" class="feedback mt-4"></div>
+                        <div class="mt-6 flex space-x-4">
+                            <button onclick="checkEx1()" class="btn btn-primary">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Exercise 2 -->
+                <section id="ex2" class="exercise-page">
+                    <div class="exercise-card">
+                        <h2 class="exercise-title text-2xl">2. Categorize the Crimes</h2>
+                        <p class="text-gray-500 mb-6">Drag and drop each crime into the correct category.</p>
+                        <div id="ex2-content"></div>
+                        <div id="ex2-feedback" class="feedback mt-4"></div>
+                        <div class="mt-6 flex space-x-4">
+                            <button onclick="checkEx2()" class="btn btn-primary">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Exercise 3 -->
+                <section id="ex3" class="exercise-page">
+                     <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="lg:w-2/3">
+                            <div class="exercise-card h-full">
+                                 <h2 class="exercise-title text-2xl">3. Match the Sentence Halves</h2>
+                                 <p class="text-gray-500 mb-6">Match sentence halves a-g with 1-7.</p>
+                                 <div id="ex3-questions" class="space-y-4"></div>
+                                 <div id="ex3-feedback" class="feedback mt-4"></div>
+                                 <div class="mt-6 flex space-x-4">
+                                     <button onclick="checkEx3()" class="btn btn-primary">Check Answers</button>
+                                     <button onclick="resetEx3()" class="btn btn-secondary">Reset</button>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/3">
+                           <div class="exercise-card h-full hidden lg:flex items-center justify-center">
+                               <img src="https://johanka2014.github.io/cae_result/police.jpg" alt="Police officer" class="rounded-lg object-cover h-full w-full">
+                           </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Exercise 4 -->
+                <section id="ex4" class="exercise-page">
+                    <div class="flex flex-col-reverse lg:flex-row gap-8">
+                        <div class="lg:w-2/3">
+                            <div class="exercise-card h-full">
+                                <h2 class="exercise-title text-2xl">4. Phrasal Verbs</h2>
+                                <p class="text-gray-500 mb-6">Replace the words in italics with phrasal verbs with 'out' or 'over'.<br>You only need to type the phrasal verb. Use present or past as needed.</p>
+                                <div id="ex4-questions" class="space-y-4"></div>
+                                <div id="ex4-feedback" class="feedback mt-4"></div>
+                                <div class="mt-6 flex space-x-4">
+                                    <button onclick="checkEx4()" class="btn btn-primary">Check Answers</button>
+                                    <button onclick="resetEx4()" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/3">
+                            <div class="exercise-card h-full">
+                                <h2 class="exercise-title text-2xl">Explanations</h2>
+                                <div class="explanation-list">
+                                    <h3 class="font-semibold mb-2 text-lg">Phrasal Verb Meanings</h3>
+                                    <ul>
+                                        <li><strong>pull over:</strong> to move a vehicle to the side of the road and stop.</li>
+                                        <li><strong>work out:</strong> to be successful; to calculate.</li>
+                                        <li><strong>bring out:</strong> to produce something to sell to the public.</li>
+                                        <li><strong>hold on:</strong> to wait for a short time.</li>
+                                        <li><strong>turn out:</strong> to switch off a light.</li>
+                                        <li><strong>set out:</strong> to arrange or display things.</li>
+                                        <li><strong>get over:</strong> to recover from something (e.g., a shock or illness).</li>
+                                        <li><strong>hold out:</strong> to extend something towards someone.</li>
+                                        <li><strong>check out:</strong> to examine or investigate something.</li>
+                                        <li><strong>give out:</strong> to distribute or give something to several people.</li>
+                                    </ul>
+                                    <img src="https://johanka2014.github.io/cae_result/car.jpg" alt="A car pulling over" class="hidden md:block mt-4 rounded-lg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                 <!-- Exercise 5 (formerly 7) -->
+                <section id="ex5" class="exercise-page">
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="lg:w-2/3">
+                            <div class="exercise-card h-full">
+                                 <h2 class="exercise-title text-2xl">5. Match the Crime</h2>
+                                 <p class="text-gray-500 mb-6">Match what each person did with the name of their crime.</p>
+                                 <div id="ex5-questions" class="space-y-4"></div>
+                                 <div id="ex5-feedback" class="feedback mt-4"></div>
+                                 <div class="mt-6 flex space-x-4">
+                                     <button onclick="checkEx5()" class="btn btn-primary">Check Answers</button>
+                                     <button onclick="resetEx5()" class="btn btn-secondary">Reset</button>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/3">
+                            <div class="exercise-card h-full hidden lg:flex items-center justify-center">
+                               <img src="https://johanka2014.github.io/cae_result/crimes-crop.png" alt="A collage of crime related images" class="rounded-lg object-contain h-full w-full">
+                           </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Exercise 6 (formerly 8) -->
+                <section id="ex6" class="exercise-page">
+                    <div class="exercise-card">
+                         <h2 class="exercise-title text-2xl">6. Complete with Verbs</h2>
+                         <p class="text-gray-500 mb-6">Complete the sentences with a verb from the box in the correct form. One verb is used twice.</p>
+                         <div id="ex6-word-bank" class="word-bank"></div>
+                         <div id="ex6-questions" class="space-y-4"></div>
+                         <div id="ex6-feedback" class="feedback mt-4"></div>
+                         <div class="mt-6 flex space-x-4">
+                             <button onclick="checkEx6()" class="btn btn-primary">Check Answers</button>
+                             <button onclick="resetEx6()" class="btn btn-secondary">Reset</button>
+                         </div>
+                    </div>
+                </section>
+                 <!-- Exercise 7 (formerly 9) -->
+                <section id="ex7" class="exercise-page">
+                    <div class="exercise-card">
+                         <h2 class="exercise-title text-2xl">7. Replace the Word</h2>
+                         <p class="text-gray-500 mb-6">Replace the underlined part of the sentence with a word from the box.</p>
+                         <div id="ex7-word-bank" class="word-bank"></div>
+                         <div id="ex7-questions" class="space-y-4"></div>
+                         <div id="ex7-feedback" class="feedback mt-4"></div>
+                         <div class="mt-6 flex space-x-4">
+                             <button onclick="checkEx7()" class="btn btn-primary">Check Answers</button>
+                             <button onclick="resetEx7()" class="btn btn-secondary">Reset</button>
+                         </div>
+                    </div>
+                </section>
+                <!-- Exercise 8 (formerly 10) -->
+                <section id="ex8" class="exercise-page">
+                     <div class="exercise-card">
+                         <h2 class="exercise-title text-2xl">8. Word Formation</h2>
+                         <p class="text-gray-500 mb-6">Complete the sentences with a word formed from the word in capitals.</p>
+                         <div id="ex8-questions" class="space-y-4"></div>
+                         <div id="ex8-feedback" class="feedback mt-4"></div>
+                         <div class="mt-6 flex space-x-4">
+                             <button onclick="checkEx8()" class="btn btn-primary">Check Answers</button>
+                             <button onclick="resetEx8()" class="btn btn-secondary">Reset</button>
+                         </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Page Navigation Buttons -->
+            <footer id="page-navigation" class="mt-4 pt-4 border-t border-gray-200 flex justify-between items-center">
+                <button id="back-btn" onclick="goBack()" class="btn btn-secondary page-nav-button">← Back</button>
+                <button id="next-btn" onclick="goNext()" class="btn btn-primary page-nav-button">Next →</button>
+            </footer>
         </div>
     </div>
 
     <script>
-    // --- PAGE NAVIGATION ---
-    function showPage(pageNumber) {
-        document.getElementById('page1').classList.add('hidden');
-        document.getElementById('page2').classList.add('hidden');
-        document.getElementById(`page${pageNumber}`).classList.remove('hidden');
+    const EXERCISE_COUNT = 8;
+    let currentExercise = 1;
+    const exerciseTitles = [
+        "1. Join Sentences", "2. Categorize Crimes", "3. Match Sentences",
+        "4. Phrasal Verbs", "5. Match Crime", "6. Complete with Verbs", 
+        "7. Replace Word", "8. Word Formation"
+    ];
 
-        document.getElementById('nav-page1').classList.remove('active');
-        document.getElementById('nav-page2').classList.remove('active');
-        document.getElementById(`nav-page${pageNumber}`).classList.add('active');
+    function showExercises(event) {
+        if (event) event.preventDefault();
+        document.getElementById('title-page').classList.add('hidden');
+        document.getElementById('main-content').classList.remove('hidden');
+        showExercise(1);
+    }
+    
+    function goBack() {
+        if (currentExercise > 1) {
+            showExercise(currentExercise - 1);
+        }
+    }
+
+    function goNext() {
+        if (currentExercise < EXERCISE_COUNT) {
+            showExercise(currentExercise + 1);
+        }
+    }
+
+    // --- PAGE NAVIGATION ---
+    function showExercise(exerciseNumber) {
+        currentExercise = exerciseNumber;
+        document.querySelectorAll('.exercise-page').forEach(el => el.classList.add('hidden'));
+        document.getElementById(`ex${exerciseNumber}`).classList.remove('hidden');
+        updateNavActiveState(exerciseNumber);
+        updateBackNextButtonsState();
+    }
+
+    function updateBackNextButtonsState() {
+        const backBtn = document.getElementById('back-btn');
+        const nextBtn = document.getElementById('next-btn');
+        backBtn.classList.toggle('hidden', currentExercise === 1);
+        nextBtn.classList.toggle('hidden', currentExercise === EXERCISE_COUNT);
+    }
+
+    function updateNavActiveState(activeNumber) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', parseInt(link.dataset.ex) === activeNumber);
+        });
+    }
+
+    function toggleMobileMenu() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+    
+    function navigateAndCloseMenu(exerciseNumber, event) {
+        event.preventDefault();
+        showExercise(exerciseNumber);
+        toggleMobileMenu();
+    }
+    
+    function buildNavigation() {
+        const desktopNav = document.getElementById('desktop-nav');
+        const mobileNav = document.getElementById('mobile-nav-links');
+        desktopNav.innerHTML = '';
+        mobileNav.innerHTML = '';
+        exerciseTitles.forEach((title, index) => {
+            const exNum = index + 1;
+            const desktopLink = document.createElement('a');
+            desktopLink.href = '#';
+            desktopLink.className = 'nav-link';
+            desktopLink.textContent = `Ex ${exNum}`;
+            desktopLink.dataset.ex = exNum;
+            desktopLink.onclick = (e) => { e.preventDefault(); showExercise(exNum); };
+            desktopNav.appendChild(desktopLink);
+            if (index < exerciseTitles.length - 1) {
+                const separator = document.createElement('span');
+                separator.className = 'text-gray-300';
+                separator.textContent = '|';
+                desktopNav.appendChild(separator);
+            }
+            const mobileLink = document.createElement('a');
+            mobileLink.href = '#';
+            mobileLink.className = 'nav-link block text-2xl py-2';
+            mobileLink.textContent = title;
+            mobileLink.dataset.ex = exNum;
+            mobileLink.onclick = (e) => navigateAndCloseMenu(exNum, e);
+            mobileNav.appendChild(mobileLink);
+        });
     }
 
     // --- DATA ---
-    // Page 1 Data
     const ex1Data = [{ q: 'Richard is a quiet man and certainly not capable', a: '3', p: 'of' }, { q: 'Please accept this cheque as compensation', a: '1', p: 'for' }, { q: 'I think there is scope', a: '5', p: 'for' }, { q: 'You need to have a clear view', a: '2', p: 'of' }, { q: 'When you see the result', a: '6', p: 'of' }, { q: 'The audience was intrigued by the sudden appearance', a: '7', p: 'of' }, { q: 'I\'m afraid the children were to blame', a: '4', p: 'for' }, { q: 'The writer\'s view', a: '8', p: 'of' }];
     const ex1Endings = ['the damage to your property.', 'how your story is going to end.', 'any kind of violent behaviour.', 'eating all the ice-cream in the freezer.', 'improvement in this project.', 'all your hard work, you\'ll realise it was worth it.', 'one of the actors in their midst.', 'life at that time is rather interesting.'];
     const ex2Data = { 'violence': ['murder', 'manslaughter', 'assault', 'mugging'], 'money': ['robbery', 'fraud', 'bribery', 'forgery', 'blackmail', 'smuggling', 'theft'], 'property': ['arson', 'burglary'] };
     const ex3Data = [{ q: 'A convicted criminal can appeal', a: '3' }, { q: 'You must be read your rights if you are arrested', a: '5' }, { q: 'If you are a suspect, the police may take you', a: '1' }, { q: 'With enough evidence, you may be charged', a: '7' }, { q: 'A prisoner released on the promise of good behaviour is', a: '6' }, { q: 'If you\'re found guilty', a: '4' }, { q: 'For serious offences you may be sentenced', a: '2' }];
     const ex3Endings = ['into custody.', 'to several years in prison.', 'against their sentence.', 'of some offences you may get a suspended sentence.', 'for committing a crime.', 'on parole.', 'with an offence.'];
     const ex4Data = [{ q: 'When he got a burst tyre, Bob <em>drove onto the hard shoulder of the motorway</em>.', a: 'pulled over' }, { q: "After so many problems, we were delighted when our plans <em>were successful</em>.", a: 'worked out' }, { q: "After working round the clock, the newspaper staff managed to <em>produce</em> the special edition.", a: 'bring out' }, { q: "If you can manage to <em>wait</em> another ten minutes, we'll stop at the next service station.", a: 'hold on' }, { q: "Don't forget to <em>switch off</em> the lights.", a: 'turn out' }, { q: "The paintings in the exhibition were <em>arranged</em> in a circle round the room.", a: 'set out' }, { q: "Do you think Jason will ever <em>recover from</em> the shock of not being chosen to play in the match?", a: 'get over' }, { q: "The Prime Minister <em>extended</em> her hand to each member of the winning team.", a: 'held out' }, { q: "It's advisable to <em>investigate</em> all the facilities before deciding to join a gym.", a: 'check out' }, { q: "Didn't you get the factsheet that I <em>distributed</em>?", a: 'gave out' }, { q: "By deducting the bottom figure from the top one, we can <em>calculate</em> how much money we've got.", a: 'work out' }];
-    const ex5Data = [{ q: 'a) The aim ___ this report is to...', a: 'of' }, { q: 'b) The following report relates ___ the matter.', a: 'to' }, { q: 'c) To sum ___, everyone felt that...', a: 'up' }, { q: 'd) ___ conclusion, I would have no hesitation in...', a: 'in' }, { q: 'e) Taking everything ___ consideration...', a: 'into' }];
-    const ex6Data = { text: `There (1) many positive aspects (2) the trip. Firstly, the accommodation itself was excellent, (3) conveniently situated between the town centre and the beach. Unfortunately, a few (4) did occur. To start (5), the hotel was situated next to a night club which was (6) noisy that it was difficult to sleep and, to make matters (7), it didn't close until the early hours of the morning. (8), the rather restricted mealtimes meant that we could not enjoy a leisurely meal beyond 10 p.m. However, all in (9), my experience was a positive one. I hope that my report will (10) you to improve facilities for the future.`, answers: ['were', 'to', 'being', 'problems', 'with', 'so', 'worse', 'Secondly', 'all', 'enable'] };
-
-    // Page 2 Data
-    const ex7Data = [ { q: 'threatened an old lady with a knife and stole her wallet', a: '6' }, { q: 'killed someone without having planned to do so', a: '5' }, { q: 'brought illegal drugs into the country', a: '7' }, { q: 'set fire to a building deliberately', a: '1' }, { q: 'produced false banknotes', a: '3' }, { q: 'used someone else\'s credit card details in order to buy things', a: '4' }, { q: 'threatened to tell a secret unless she was given money', a: '2' }, ];
-    const ex7Crimes = ['arson', 'blackmail', 'forgery', 'fraud', 'manslaughter', 'mugging', 'smuggling'];
-    const ex8Data = [ { q: 'If we don\'t stop for a rest soon, I think my legs are going to ___.', a: 'give out' }, { q: 'She\'s waiting until the book ___ in paperback before she buys a copy.', a: 'comes out' }, { q: 'Mandy is finding it difficult to ___ now that she\'s got two toddlers and a baby to look after.', a: 'cope' }, { q: 'Sales of the crime writer\'s work ___ in 2001 and have declined slightly since then.', a: 'peaked' }, { q: 'Due to the introduction of robots, eight hundred production jobs at the car factory ___ next spring.', a: 'will be axed' }, { q: 'Frank ___ his hand to help his mother as she stepped off the boat.', a: 'held out' }, { q: 'None of the drivers ___ to let the truck pass through the narrow street.', a: 'pulled over' }, { q: 'Rosemary couldn\'t ___ how much her grandson had changed since she had last seen him.', a: 'get over' }, { q: 'The shopkeeper ___ ten per cent from the cost of the dishwasher because it had a small scratch on it.', a: 'deducted' }, { q: 'Could you come along at the start of the seminar to help me ___ the worksheets?', a: 'give out' } ];
-    const ex8Verbs = ['axe', 'bring out', 'cope', 'deduct', 'get over', 'give out', 'hold out', 'peak', 'pull over'];
-    const ex9Data = [ { q: 'You are not <u>allowed according to the rules</u> to take part in this competition.', a: 'eligible' }, { q: 'While on holiday in France, we visited several very <u>impressive</u> castles.', a: 'splendid' }, { q: 'It can be very <u>upsetting</u> to see an animal in pain.', a: 'distressing' }, { q: 'This is a particularly <u>wealthy</u> neighbourhood where property prices are extremely high.', a: 'affluent' }, { q: 'What <u>type</u> of films do you like watching?', a: 'genre' }, { q: 'Joanna Ransom\'s <u>perfect</u> performance of the difficult Rachmaninov symphony was the highlight of the concert.', a: 'impeccable' }, { q: 'Even people who commit a serious <u>illegal act</u> should expect to be treated fairly in a court of law.', a: 'offence' }, { q: 'A <u>well-known</u> politician will be visiting our town during the summer festival.', a: 'prominent' }, { q: 'As a group of teenagers sheltered in the <u>uninhabited</u> farmhouse, you knew something awful was about to happen in the film.', a: 'disused' }, { q: 'Mike is so <u>unwilling to change his attitude</u> that he won\'t accept help even when he needs it.', a: 'stubborn' }, { q: 'The company is already making huge profits and it\'s just a <u>strong desire for more wealth</u> that makes them charge higher and higher prices.', a: 'greed' }, { q: 'For some reason, Shona always seem to choose boyfriends who are <u>unable to stop themselves from being</u> liars.', a: 'habitual' } ];
-    const ex9Verbs = ['affluent', 'impeccable', 'distressing', 'misuse', 'disused', 'offence', 'dull', 'prominent', 'eligible', 'splendid', 'genre', 'stubborn', 'greed', 'habitual'];
-    const ex10Data = [ { q: 'All their close friends and a few ___ came to their wedding.', cap: 'ACQUAINT', a: 'acquaintances' }, { q: 'Police believe they have uncovered a ___ to blow up the Houses of Parliament.', cap: 'CONSPIRE', a: 'conspiracy' }, { q: 'The airline was criticised for their ___ advert which suggested all their flights cost just £25.', cap: 'LEAD', a: 'misleading' }, { q: 'Finally, finish off the cake with a ___ of nuts on the top.', cap: 'SCATTER', a: 'scattering' }, { q: 'You should always ___ the small print before you sign any legal document.', cap: 'SCRUTINY', a: 'scrutinise' }, { q: 'The magician performed the trick with such ___ that it was impossible to see how it was done.', cap: 'SUBTLE', a: 'subtlety' }, { q: 'People who are colour-blind find it hard to ___ between red and green.', cap: 'DISTINCT', a: 'distinguish' }, { q: 'The seas around Norway offer a ___ unpolluted marine environment to be explored.', cap: 'BOUNTY', a: 'bountiful' } ];
+    const ex5Data = [ { q: 'threatened an old lady with a knife and stole her wallet', a: '6' }, { q: 'killed someone without having planned to do so', a: '5' }, { q: 'brought illegal drugs into the country', a: '7' }, { q: 'set fire to a building deliberately', a: '1' }, { q: 'produced false banknotes', a: '3' }, { q: 'used someone else\'s credit card details in order to buy things', a: '4' }, { q: 'threatened to tell a secret unless she was given money', a: '2' }, ];
+    const ex5Crimes = ['arson', 'blackmail', 'forgery', 'fraud', 'manslaughter', 'mugging', 'smuggling'];
+    const ex6Data = [ { q: 'If we don\'t stop for a rest soon, I think my legs are going to ___.', a: 'give out' }, { q: 'She\'s waiting until the book ___ in paperback before she buys a copy.', a: 'comes out' }, { q: 'Mandy is finding it difficult to ___ now that she\'s got two toddlers and a baby to look after.', a: 'cope' }, { q: 'Sales of the crime writer\'s work ___ in 2001 and have declined slightly since then.', a: 'peaked' }, { q: 'Due to the introduction of robots, eight hundred production jobs at the car factory ___ next spring.', a: 'will be axed' }, { q: 'Frank ___ his hand to help his mother as she stepped off the boat.', a: 'held out' }, { q: 'None of the drivers ___ to let the truck pass through the narrow street.', a: 'pulled over' }, { q: 'Rosemary couldn\'t ___ how much her grandson had changed since she had last seen him.', a: 'get over' }, { q: 'The shopkeeper ___ ten per cent from the cost of the dishwasher because it had a small scratch on it.', a: 'deducted' }, { q: 'Could you come along at the start of the seminar to help me ___ the worksheets?', a: 'give out' } ];
+    const ex6Verbs = ['axe', 'bring out', 'cope', 'deduct', 'get over', 'give out', 'hold out', 'peak', 'pull over'];
+    const ex7Data = [ { q: 'You are not <u>allowed according to the rules</u> to take part in this competition.', a: 'eligible' }, { q: 'While on holiday in France, we visited several very <u>impressive</u> castles.', a: 'splendid' }, { q: 'It can be very <u>upsetting</u> to see an animal in pain.', a: 'distressing' }, { q: 'This is a particularly <u>wealthy</u> neighbourhood where property prices are extremely high.', a: 'affluent' }, { q: 'What <u>type</u> of films do you like watching?', a: 'genre' }, { q: 'Joanna Ransom\'s <u>perfect</u> performance of the difficult Rachmaninov symphony was the highlight of the concert.', a: 'impeccable' }, { q: 'Even people who commit a serious <u>illegal act</u> should expect to be treated fairly in a court of law.', a: 'offence' }, { q: 'A <u>well-known</u> politician will be visiting our town during the summer festival.', a: 'prominent' }, { q: 'As a group of teenagers sheltered in the <u>uninhabited</u> farmhouse, you knew something awful was about to happen in the film.', a: 'disused' }, { q: 'Mike is so <u>unwilling to change his attitude</u> that he won\'t accept help even when he needs it.', a: 'stubborn' }, { q: 'The company is already making huge profits and it\'s just a <u>strong desire for more wealth</u> that makes them charge higher and higher prices.', a: 'greed' }, { q: 'For some reason, Shona always seem to choose boyfriends who are <u>unable to stop themselves from being</u> liars.', a: 'habitual' } ];
+    const ex7Verbs = ['affluent', 'impeccable', 'distressing', 'misuse', 'disused', 'offence', 'dull', 'prominent', 'eligible', 'splendid', 'genre', 'stubborn', 'greed', 'habitual'];
+    const ex8Data = [ { q: 'All their close friends and a few ___ came to their wedding.', cap: 'ACQUAINT', a: 'acquaintances' }, { q: 'Police believe they have uncovered a ___ to blow up the Houses of Parliament.', cap: 'CONSPIRE', a: 'conspiracy' }, { q: 'The airline was criticised for their ___ advert which suggested all their flights cost just £25.', cap: 'LEAD', a: 'misleading' }, { q: 'Finally, finish off the cake with a ___ of nuts on the top.', cap: 'SCATTER', a: 'scattering' }, { q: 'You should always ___ the small print before you sign any legal document.', cap: 'SCRUTINY', a: 'scrutinise' }, { q: 'The magician performed the trick with such ___ that it was impossible to see how it was done.', cap: 'SUBTLE', a: 'subtlety' }, { q: 'People who are colour-blind find it hard to ___ between red and green.', cap: 'DISTINCT', a: 'distinguish' }, { q: 'The seas around Norway offer a ___ unpolluted marine environment to be explored.', cap: 'BOUNTY', a: 'bountiful' } ];
 
     // --- INITIALIZATION ---
     function initEx1() { document.getElementById('ex1-questions').innerHTML = ex1Data.map((item, index) => `<div class="grid grid-cols-1 md:grid-cols-4 gap-2 items-center" data-index="${index}"><p class="md:col-span-2">${String.fromCharCode(97 + index)}) ${item.q}</p><div><select id="ex1-prep-${index}" class="ex1-prep"><option value="">of/for?</option><option value="of">of</option><option value="for">for</option></select></div><div><select id="ex1-ending-${index}" class="ex1-ending"><option value="">Choose ending...</option>${ex1Endings.map((ending, i) => `<option value="${i+1}">${i+1}) ${ending}</option>`).join('')}</select></div></div>`).join(''); }
-    function initEx2() { const container = document.getElementById('ex2-content'); container.innerHTML = `<div class="flex flex-col md:flex-row gap-4"><div class="w-full md:w-1/4"><h3 class="font-semibold mb-2 text-center text-gray-800">Crimes to Categorize</h3><div id="crime-pool" class="p-4 bg-gray-100 rounded-lg flex flex-wrap justify-center"></div></div><div class="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-3 gap-4"><div><h3 class="font-semibold mb-2 text-center text-gray-800">Violence</h3><div id="cat-violence" class="drop-zone"></div></div><div><h3 class="font-semibold mb-2 text-center text-gray-800">Financial Gain</h3><div id="cat-money" class="drop-zone"></div></div><div><h3 class="font-semibold mb-2 text-center text-gray-800">Property Damage</h3><div id="cat-property" class="drop-zone"></div></div></div></div>`; const crimePool = document.getElementById('crime-pool'); const allCrimes = [...ex2Data.violence, ...ex2Data.money, ...ex2Data.property].sort(() => Math.random() - 0.5); allCrimes.forEach(crime => { const el = document.createElement('div'); el.id = `crime-${crime}`; el.className = 'draggable'; el.draggable = true; el.textContent = crime; let correctCat = ''; if (ex2Data.violence.includes(crime)) correctCat = 'violence'; else if (ex2Data.money.includes(crime)) correctCat = 'money'; else correctCat = 'property'; el.dataset.category = correctCat; crimePool.appendChild(el); }); addDragAndDropListeners(); }
-    function initEx3() { document.getElementById('ex3-questions').innerHTML = ex3Data.map((item, index) => `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center" data-index="${index}"><p class="md:col-span-2">${String.fromCharCode(97 + index)}) ${item.q}</p><div><select id="ex3-ending-${index}" class="ex3-ending"><option value="">Choose ending...</option>${ex3Endings.map((ending, i) => `<option value="${i+1}">${i+1}) ${ending}</option>`).join('')}</select></div></div>`).join(''); }
+    function initEx2() { const container = document.getElementById('ex2-content'); container.innerHTML = `<div class="flex flex-col md:flex-row gap-4"><div class="w-full md:w-1/4"><h3 class="font-semibold mb-2 text-center text-gray-800">Crimes to Categorize</h3><div id="crime-pool" class="p-4 bg-gray-100 rounded-lg flex flex-wrap justify-center"></div></div><div class="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-3 gap-4"><div><h3 class="font-semibold mb-2 text-center text-gray-800">Violence</h3><div id="cat-violence" class="drop-zone"></div></div><div><h3 class="font-semibold mb-2 text-center text-gray-800">Financial Gain</h3><div id="cat-money" class="drop-zone"></div></div><div><h3 class="font-semibold mb-2 text-center text-gray-800">Property Damage</h3><div id="cat-property" class="drop-zone"></div></div></div></div>`; const crimePool = document.getElementById('crime-pool'); crimePool.innerHTML = ''; const allCrimes = [...ex2Data.violence, ...ex2Data.money, ...ex2Data.property].sort(() => Math.random() - 0.5); allCrimes.forEach(crime => { const el = document.createElement('div'); el.id = `crime-${crime}`; el.className = 'draggable'; el.draggable = true; el.textContent = crime; let correctCat = ''; if (ex2Data.violence.includes(crime)) correctCat = 'violence'; else if (ex2Data.money.includes(crime)) correctCat = 'money'; else correctCat = 'property'; el.dataset.category = correctCat; crimePool.appendChild(el); }); addDragAndDropListeners(); }
+    function initEx3() { document.getElementById('ex3-questions').innerHTML = ex3Data.map((item, index) => `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center" data-index="${index}"><p>${String.fromCharCode(97 + index)}) ${item.q}</p><div><select id="ex3-ending-${index}" class="ex3-ending"><option value="">Choose ending...</option>${ex3Endings.map((ending, i) => `<option value="${i+1}">${i+1}) ${ending}</option>`).join('')}</select></div></div>`).join(''); }
     function initEx4() { document.getElementById('ex4-questions').innerHTML = ex4Data.map((item, index) => `<div class="space-y-2" data-index="${index}"><p>${item.q}</p><input type="text" id="ex4-answer-${index}" placeholder="Type the phrasal verb..." class="ex4-answer"></div>`).join(''); }
-    function initEx5() { document.getElementById('ex5-questions').innerHTML = ex5Data.map((item, index) => `<p>${item.q.replace('___', `<input type="text" id="ex5-answer-${index}" placeholder="..." class="ex5-answer inline-block w-24 text-center">`)}</p>`).join(''); }
-    function initEx6() { let textWithInputs = ex6Data.text; ex6Data.answers.forEach((_, i) => { textWithInputs = textWithInputs.replace(new RegExp(`\\(${i+1}\\)`), `<input type="text" id="ex6-answer-${i}" class="ex6-answer inline-block w-32 mx-1 text-center" data-index="${i}">`); }); document.getElementById('ex6-text').innerHTML = textWithInputs; }
-    function initEx7() { document.getElementById('ex7-questions').innerHTML = ex7Data.map((item, index) => `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center" data-index="${index}"><p>${String.fromCharCode(97 + index)}) ${item.q}</p><div><select id="ex7-crime-${index}" class="ex7-crime"><option value="">Choose crime...</option>${ex7Crimes.map((crime, i) => `<option value="${i+1}">${crime}</option>`).join('')}</select></div></div>`).join(''); }
-    function initEx8() { document.getElementById('ex8-word-bank').innerHTML = ex8Verbs.map(v => `<span class="word-bank-item">${v}</span>`).join(''); document.getElementById('ex8-questions').innerHTML = ex8Data.map((item, index) => `<p>${item.q.replace('___', `<input type="text" id="ex8-answer-${index}" placeholder="Type the verb..." class="ex8-answer">`)}</p>`).join(''); }
-    function initEx9() { document.getElementById('ex9-word-bank').innerHTML = ex9Verbs.sort().map(v => `<span class="word-bank-item">${v}</span>`).join(''); document.getElementById('ex9-questions').innerHTML = ex9Data.map((item, index) => `<div class="space-y-2" data-index="${index}"><p>${item.q}</p><input type="text" id="ex9-answer-${index}" placeholder="Type the replacement word..." class="ex9-answer"></div>`).join(''); }
-    function initEx10() { document.getElementById('ex10-questions').innerHTML = ex10Data.map((item, index) => `<div class="flex items-center space-x-2" data-index="${index}"><p class="flex-grow">${item.q.replace('___', `<input type="text" id="ex10-answer-${index}" placeholder="..." class="ex10-answer w-32">`)}</p><span class="font-bold text-gray-500">(${item.cap})</span></div>`).join(''); }
+    function initEx5() { document.getElementById('ex5-questions').innerHTML = ex5Data.map((item, index) => `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center" data-index="${index}"><p>${String.fromCharCode(97 + index)}) ${item.q}</p><div><select id="ex5-crime-${index}" class="ex5-crime"><option value="">Choose crime...</option>${ex5Crimes.map((crime, i) => `<option value="${i+1}">${crime}</option>`).join('')}</select></div></div>`).join(''); }
+    function initEx6() { document.getElementById('ex6-word-bank').innerHTML = ex6Verbs.map(v => `<span class="word-bank-item">${v}</span>`).join(''); document.getElementById('ex6-questions').innerHTML = ex6Data.map((item, index) => `<p>${item.q.replace('___', `<input type="text" id="ex6-answer-${index}" placeholder="Type the verb..." class="ex6-answer">`)}</p>`).join(''); }
+    function initEx7() { document.getElementById('ex7-word-bank').innerHTML = ex7Verbs.sort().map(v => `<span class="word-bank-item">${v}</span>`).join(''); document.getElementById('ex7-questions').innerHTML = ex7Data.map((item, index) => `<div class="space-y-2" data-index="${index}"><p>${item.q}</p><input type="text" id="ex7-answer-${index}" placeholder="Type the replacement word..." class="ex7-answer"></div>`).join(''); }
+    function initEx8() { document.getElementById('ex8-questions').innerHTML = ex8Data.map((item, index) => `<div class="flex items-center space-x-2" data-index="${index}"><p class="flex-grow">${item.q.replace('___', `<input type="text" id="ex8-answer-${index}" placeholder="..." class="ex8-answer w-32">`)}</p><span class="font-bold text-gray-500">(${item.cap})</span></div>`).join(''); }
 
-    function initPage1() { initEx1(); initEx2(); initEx3(); initEx4(); initEx5(); initEx6(); }
-    function initPage2() { initEx7(); initEx8(); initEx9(); initEx10(); }
+    function initAllExercises() {
+        initEx1(); initEx2(); initEx3(); initEx4(); initEx5(); initEx6();
+        initEx7(); initEx8();
+    }
 
     // --- CHECKING LOGIC ---
-    function checkAll(data, feedbackElId, answerElSelector, checkFn) { let c = 0; data.forEach((item, index) => { const el = document.querySelector(`${answerElSelector}${index}`); el.classList.remove('input-correct', 'input-incorrect'); const isCorrect = checkFn(item, el); el.classList.add(isCorrect ? 'input-correct' : 'input-incorrect'); if (isCorrect) c++; }); document.getElementById(feedbackElId).textContent = `You got ${c} out of ${data.length} correct.`; document.getElementById(feedbackElId).className = 'feedback correct'; }
+    function checkAll(data, feedbackElId, answerElSelector, checkFn) { let c = 0; data.forEach((item, index) => { const el = document.querySelector(`${answerElSelector}-${index}`); el.classList.remove('input-correct', 'input-incorrect'); const isCorrect = checkFn(item, el); el.classList.add(isCorrect ? 'input-correct' : 'input-incorrect'); if (isCorrect) c++; }); document.getElementById(feedbackElId).textContent = `You got ${c} out of ${data.length} correct.`; document.getElementById(feedbackElId).className = 'feedback correct'; }
     function checkEx1() { let c = 0; ex1Data.forEach((item, index) => { const p = document.getElementById(`ex1-prep-${index}`); const e = document.getElementById(`ex1-ending-${index}`); const ip = p.value === item.p; const ie = e.value === item.a; p.classList.remove('input-correct', 'input-incorrect'); e.classList.remove('input-correct', 'input-incorrect'); p.classList.add(ip ? 'input-correct' : 'input-incorrect'); e.classList.add(ie ? 'input-correct' : 'input-incorrect'); if (ip && ie) c++; }); const f = document.getElementById('ex1-feedback'); f.textContent = `You got ${c} out of ${ex1Data.length} completely correct.`; f.className = 'feedback correct'; }
-    function checkEx2() { let c=0; const a=document.querySelectorAll('#cat-violence .draggable, #cat-money .draggable, #cat-property .draggable'); a.forEach(el => { const p = el.parentElement.id; const cc = el.dataset.category; el.classList.remove('correct', 'incorrect'); if (p === `cat-${cc}`) { el.classList.add('correct'); c++; } else { el.classList.add('incorrect'); } }); const t = Object.values(ex2Data).flat().length; const f = document.getElementById('ex2-feedback'); if (a.length < t) { f.textContent = 'Please categorize all crimes!'; f.className = 'feedback incorrect'; } else { f.textContent = `You correctly placed ${c} out of ${t} crimes.`; f.className = 'feedback correct'; } }
-    function checkEx3() { checkAll(ex3Data, 'ex3-feedback', '#ex3-ending-', (item, el) => el.value === item.a); }
-    function checkEx4() { checkAll(ex4Data, 'ex4-feedback', '#ex4-answer-', (item, el) => el.value.trim().toLowerCase() === item.a); }
-    function checkEx5() { checkAll(ex5Data, 'ex5-feedback', '#ex5-answer-', (item, el) => el.value.trim().toLowerCase() === item.a); }
-    function checkEx6() { checkAll(ex6Data.answers, 'ex6-feedback', '#ex6-answer-', (item, el) => el.value.trim().toLowerCase() === item); }
-    function checkEx7() { checkAll(ex7Data, 'ex7-feedback', '#ex7-crime-', (item, el) => el.value === item.a); }
-    function checkEx8() { checkAll(ex8Data, 'ex8-feedback', '#ex8-answer-', (item, el) => el.value.trim().toLowerCase() === item.a); }
-    function checkEx9() { checkAll(ex9Data, 'ex9-feedback', '#ex9-answer-', (item, el) => el.value.trim().toLowerCase() === item.a); }
-    function checkEx10() { checkAll(ex10Data, 'ex10-feedback', '#ex10-answer-', (item, el) => el.value.trim().toLowerCase() === item.a || (item.a === 'scrutinise' && el.value.trim().toLowerCase() === 'scrutinize')); }
+    function checkEx2() { let c=0; const a=document.querySelectorAll('#cat-violence .draggable, #cat-money .draggable, #cat-property .draggable'); a.forEach(el => { const p = el.parentElement.id; const cc = el.dataset.category; el.classList.remove('input-correct', 'input-incorrect'); if (p === `cat-${cc}`) { el.classList.add('input-correct'); c++; } else { el.classList.add('input-incorrect'); } }); const t = Object.values(ex2Data).flat().length; const f = document.getElementById('ex2-feedback'); if (a.length < t) { f.textContent = 'Please categorize all crimes!'; f.className = 'feedback incorrect'; } else { f.textContent = `You correctly placed ${c} out of ${t} crimes.`; f.className = 'feedback correct'; } }
+    function checkEx3() { checkAll(ex3Data, 'ex3-feedback', '#ex3-ending', (item, el) => el.value === item.a); }
+    function checkEx4() { checkAll(ex4Data, 'ex4-feedback', '#ex4-answer', (item, el) => el.value.trim().toLowerCase() === item.a); }
+    function checkEx5() { checkAll(ex5Data, 'ex5-feedback', '#ex5-crime', (item, el) => el.value === item.a); }
+    function checkEx6() { checkAll(ex6Data, 'ex6-feedback', '#ex6-answer', (item, el) => el.value.trim().toLowerCase() === item.a); }
+    function checkEx7() { checkAll(ex7Data, 'ex7-feedback', '#ex7-answer', (item, el) => el.value.trim().toLowerCase() === item.a); }
+    function checkEx8() { checkAll(ex8Data, 'ex8-feedback', '#ex8-answer', (item, el) => el.value.trim().toLowerCase() === item.a || (item.a === 'scrutinise' && el.value.trim().toLowerCase() === 'scrutinize')); }
 
     // --- RESETTING LOGIC ---
     function resetAll(containerId, feedbackId, selector) { document.querySelectorAll(`${containerId} ${selector}`).forEach(el => { el.value = ''; el.classList.remove('input-correct', 'input-incorrect'); }); document.getElementById(feedbackId).textContent = ''; }
@@ -331,21 +513,20 @@
     function resetEx2() { initEx2(); document.getElementById('ex2-feedback').textContent = ''; }
     function resetEx3() { resetAll('#ex3', 'ex3-feedback', 'select'); }
     function resetEx4() { resetAll('#ex4', 'ex4-feedback', 'input'); }
-    function resetEx5() { resetAll('#ex5', 'ex5-feedback', 'input'); }
+    function resetEx5() { resetAll('#ex5', 'ex5-feedback', 'select'); }
     function resetEx6() { resetAll('#ex6', 'ex6-feedback', 'input'); }
-    function resetEx7() { resetAll('#ex7', 'ex7-feedback', 'select'); }
+    function resetEx7() { resetAll('#ex7', 'ex7-feedback', 'input'); }
     function resetEx8() { resetAll('#ex8', 'ex8-feedback', 'input'); }
-    function resetEx9() { resetAll('#ex9', 'ex9-feedback', 'input'); }
-    function resetEx10() { resetAll('#ex10', 'ex10-feedback', 'input'); }
 
     // --- DRAG & DROP LOGIC ---
     function addDragAndDropListeners() { const draggables = document.querySelectorAll('.draggable'); const dropZones = document.querySelectorAll('.drop-zone, #crime-pool'); draggables.forEach(d => { d.addEventListener('dragstart', () => d.classList.add('dragging')); d.addEventListener('dragend', () => d.classList.remove('dragging')); }); dropZones.forEach(z => { z.addEventListener('dragover', e => { e.preventDefault(); z.classList.add('drag-over'); }); z.addEventListener('dragleave', () => z.classList.remove('drag-over')); z.addEventListener('drop', e => { e.preventDefault(); z.classList.remove('drag-over'); const d = document.querySelector('.dragging'); if (d) z.appendChild(d); }); }); }
 
     // --- ON PAGE LOAD ---
     document.addEventListener('DOMContentLoaded', () => {
-        initPage1();
-        initPage2();
-        showPage(1);
+        initAllExercises();
+        buildNavigation();
+        document.getElementById('main-content').classList.add('hidden');
+        document.getElementById('title-page').classList.remove('hidden');
     });
 
     </script>
